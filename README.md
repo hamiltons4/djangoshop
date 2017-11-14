@@ -1,1 +1,1 @@
-"# djangoshop" 
+# djangoshop 
