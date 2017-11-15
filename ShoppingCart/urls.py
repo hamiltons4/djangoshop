@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from shopping.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$/', index, name="index"),
-    url(r'^index/$', update_item, name="update_item_quantity"),
+    url(r'^$', index, name="index"),
+    url(r'^index/$', update_item_quantity, name="update_item_quantity"),
     url(r'^thankyou/$', thank_you, name="thank_you"),
     url(r'^confirm_order/$', confirm_order, name="confirm_order"),
     url(r'^remove_item/$', remove_item, name="remove_item"),
@@ -27,3 +28,4 @@ urlpatterns = [
     url(r'^credit_card_page/$', credit_card_page, name="credit_card_page"),
     url(r'^add_to_cart/$', add_to_cart, name="add_to_cart"),
 
+]

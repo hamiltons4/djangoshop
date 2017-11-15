@@ -37,7 +37,7 @@ def add_to_cart(request):
         if user:
             login(request, user)
     
-    product_)id = request.GET.get('product_id')
+    product_id = request.GET.get('product_id')
     cart = Cart.objects.filter(checked_out=False, user=user)
     cart = cart[0] if cart else ''
     if not cart:
@@ -48,7 +48,7 @@ def add_to_cart(request):
 
 def calculate_sum(cart_item):
     items_sum = 0
-    for item in cart_item:
+    for item in cart_items:
         items_sum = items_sum + (item.quantity * items.product.unit_price)
     return items_sum
 
@@ -56,13 +56,13 @@ def cart(request):
     user = request.user
     items = ''
     cart_items = []
-    if user.is_anonymous:
+    if user.is_anonymous():
         user = ''
     else:
         cart_items = Item.objects.filter(cart_user=user, cart__checked_out=False)
-        items = cart_items.count if cart_items else 0
+        items = cart_items.count() if cart_items else 0
     items_sum = calculate_sum(cart_items)
-    return render(request, 'cart.html', {'user':user, 'items':items, 'page':'cart', 'cart_items', cart_items, 'sum':items_sum})
+    return render(request, 'cart.html', {'user':user, 'items':items, 'page':'cart', 'cart_items':cart_items, 'sum':items_sum})
 
 def update_item_quantity(request):
     item_id = request.GET.get('item_id')
